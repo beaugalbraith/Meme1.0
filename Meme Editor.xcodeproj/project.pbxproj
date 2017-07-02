@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B60208C51E71D92600CCDA29 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60208C41E71D92600CCDA29 /* ImagePickerController.swift */; };
 		B63891541E70A54C00CCDA29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63891531E70A54C00CCDA29 /* AppDelegate.swift */; };
 		B63891561E70A54C00CCDA29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63891551E70A54C00CCDA29 /* ViewController.swift */; };
 		B63891591E70A54C00CCDA29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B63891571E70A54C00CCDA29 /* Main.storyboard */; };
 		B638915B1E70A54C00CCDA29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B638915A1E70A54C00CCDA29 /* Assets.xcassets */; };
 		B638915E1E70A54C00CCDA29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B638915C1E70A54C00CCDA29 /* LaunchScreen.storyboard */; };
+		B65AB08A1E72FCD600CCDA29 /* MR ROBOT.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B65AB0891E72FCD600CCDA29 /* MR ROBOT.ttf */; };
+		B65AB08C1E72FD2A00CCDA29 /* Starjhol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B65AB08B1E72FD2A00CCDA29 /* Starjhol.ttf */; };
+		B65AB08E1E72FD4500CCDA29 /* Starjedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B65AB08D1E72FD4500CCDA29 /* Starjedi.ttf */; };
+		B6F6BF9D1E71EE6300CCDA29 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F6BF9C1E71EE6300CCDA29 /* Meme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B60208C41E71D92600CCDA29 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		B63891501E70A54C00CCDA29 /* Meme Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63891531E70A54C00CCDA29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B63891551E70A54C00CCDA29 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +28,10 @@
 		B638915A1E70A54C00CCDA29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B638915D1E70A54C00CCDA29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B638915F1E70A54C00CCDA29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B65AB0891E72FCD600CCDA29 /* MR ROBOT.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MR ROBOT.ttf"; sourceTree = "<group>"; };
+		B65AB08B1E72FD2A00CCDA29 /* Starjhol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Starjhol.ttf; sourceTree = "<group>"; };
+		B65AB08D1E72FD4500CCDA29 /* Starjedi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Starjedi.ttf; sourceTree = "<group>"; };
+		B6F6BF9C1E71EE6300CCDA29 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +64,17 @@
 		B63891521E70A54C00CCDA29 /* Meme Editor */ = {
 			isa = PBXGroup;
 			children = (
+				B60208C41E71D92600CCDA29 /* ImagePickerController.swift */,
 				B63891531E70A54C00CCDA29 /* AppDelegate.swift */,
 				B63891551E70A54C00CCDA29 /* ViewController.swift */,
+				B65AB0891E72FCD600CCDA29 /* MR ROBOT.ttf */,
 				B63891571E70A54C00CCDA29 /* Main.storyboard */,
+				B65AB08B1E72FD2A00CCDA29 /* Starjhol.ttf */,
+				B65AB08D1E72FD4500CCDA29 /* Starjedi.ttf */,
 				B638915A1E70A54C00CCDA29 /* Assets.xcassets */,
 				B638915C1E70A54C00CCDA29 /* LaunchScreen.storyboard */,
 				B638915F1E70A54C00CCDA29 /* Info.plist */,
+				B6F6BF9C1E71EE6300CCDA29 /* Meme.swift */,
 			);
 			path = "Meme Editor";
 			sourceTree = "<group>";
@@ -96,6 +111,7 @@
 				TargetAttributes = {
 					B638914F1E70A54C00CCDA29 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 8678QAVGM6;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -124,7 +140,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B638915E1E70A54C00CCDA29 /* LaunchScreen.storyboard in Resources */,
+				B65AB08A1E72FCD600CCDA29 /* MR ROBOT.ttf in Resources */,
 				B638915B1E70A54C00CCDA29 /* Assets.xcassets in Resources */,
+				B65AB08C1E72FD2A00CCDA29 /* Starjhol.ttf in Resources */,
+				B65AB08E1E72FD4500CCDA29 /* Starjedi.ttf in Resources */,
 				B63891591E70A54C00CCDA29 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +156,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B63891561E70A54C00CCDA29 /* ViewController.swift in Sources */,
+				B6F6BF9D1E71EE6300CCDA29 /* Meme.swift in Sources */,
+				B60208C51E71D92600CCDA29 /* ImagePickerController.swift in Sources */,
 				B63891541E70A54C00CCDA29 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +281,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8678QAVGM6;
 				INFOPLIST_FILE = "Meme Editor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beaugalbraith.Meme-Editor";
@@ -272,6 +294,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8678QAVGM6;
 				INFOPLIST_FILE = "Meme Editor/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.beaugalbraith.Meme-Editor";
@@ -299,6 +322,7 @@
 				B63891641E70A54C00CCDA29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
