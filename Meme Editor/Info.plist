@@ -12,6 +12,8 @@
 	<string>&quot;Take a photo for memeing&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>&quot;Choose an existing photo&quot;</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>&quot;Allow saving to photo library&quot;</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

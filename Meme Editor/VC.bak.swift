@@ -11,7 +11,7 @@ import AssetsLibrary
 import Photos
 
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate {
+class VC: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var bottomToolbar: UIToolbar!
@@ -39,7 +39,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         // Life saver function!
         // found this on the udacity forums along with the callee - image:didFinishSavingWithError:contextInfo:
         UIImageWriteToSavedPhotosAlbum(meme.memeImage, self, #selector(saved(image:didFinishSavingWithError:contextInfo:)), nil)
-
+        
         topTextField.placeholder = "Meme"
         bottomTextField.placeholder = "Me"
     }
@@ -99,9 +99,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         }
         return photoAlbum
     }
-
+    
     private var count = 0
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imageView?.image = image
@@ -110,8 +110,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     }
     let pickerViewController = ImagePickerController()
     let contentMode = [UIViewContentMode.scaleAspectFit, UIViewContentMode.scaleToFill, UIViewContentMode.scaleAspectFill, UIViewContentMode.redraw, UIViewContentMode.center]
-
-
+    
     func nextContentMode(swipe: UISwipeGestureRecognizer) {
         print(swipe.direction)
         switch swipe.direction.rawValue {
@@ -143,9 +142,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         default:
             return
         }
-
+        
     }
-
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         topToolBar.isHidden = !topToolBar.isHidden
         bottomToolbar.isHidden = !bottomToolbar.isHidden
@@ -166,12 +165,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         swipeLeft.direction = .left
         view.addGestureRecognizer(swipeRight)
         view.addGestureRecognizer(swipeLeft)
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-//        view.addGestureRecognizer(tapGesture)
+        //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        //        view.addGestureRecognizer(tapGesture)
         // DOUBLE TAP
-//        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleBars))
-//        doubleTapGesture.numberOfTapsRequired = 2
-//        view.addGestureRecognizer(doubleTapGesture)
+        //        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleBars))
+        //        doubleTapGesture.numberOfTapsRequired = 2
+        //        view.addGestureRecognizer(doubleTapGesture)
         view.isUserInteractionEnabled = true
         
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
@@ -187,8 +186,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     func toggleBars(sender: AnyObject) {
         UIView.animate(withDuration: 2) {
             self.navigationController?.setToolbarHidden(true, animated: true)
-//            self.navigationController?.isNavigationBarHidden = self.navigationController?.isNavigationBarHidden == false
-           // self.navigationController?.setNavigationBarHidden(self.navigationController?.isNavigationBarHidden == false, animated: false) // also works
+            //            self.navigationController?.isNavigationBarHidden = self.navigationController?.isNavigationBarHidden == false
+            // self.navigationController?.setNavigationBarHidden(self.navigationController?.isNavigationBarHidden == false, animated: false) // also works
         }
     }
     override var prefersStatusBarHidden: Bool {
@@ -197,7 +196,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation{
         return UIStatusBarAnimation.slide
     }
-
+    
     func hideKeyboard(){
         for textField in self.view.subviews where textField is UITextField {
             textField.resignFirstResponder()
@@ -226,7 +225,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         self.bottomToolbar.isHidden = false
         return memedImage
     }
-
+    
     func setupTextFields(){
         
         // to get centered text you need to create paragraphstyle object
@@ -244,10 +243,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,UINaviga
         topTextField.defaultTextAttributes = memeTextStyle
         //topTextField.defaultTextAttributes[NSParagraphStyleAttributeName] = NSTextAlignment.center
         bottomTextField.defaultTextAttributes = memeTextStyle
-
-
+        
+        
     }
-
+    
 }
 
 
@@ -271,5 +270,6 @@ extension UIView {
             
         },completion: nil)
         
-    }  
+    }
 }
+
