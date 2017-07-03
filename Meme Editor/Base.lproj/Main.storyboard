@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -9,11 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GeorgiaBold.ttf">
-            <string>Georgia-Bold</string>
-        </array>
-        <array key="Optima.ttc">
-            <string>Optima-Bold</string>
+        <array key="HelveticaNeueExtras.ttc">
+            <string>HelveticaNeue-CondensedBlack</string>
         </array>
     </customFonts>
     <scenes>
@@ -26,14 +23,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gHI-Me-tts">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gHI-Me-tts">
+                                <rect key="frame" x="0.0" y="32" width="667" height="311"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Gjx-PF-SHc">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="343" width="667" height="32"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="HL7-Fo-VhR"/>
                                     <barButtonItem systemItem="camera" id="Oou-pL-8PA">
@@ -50,26 +47,26 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7Su-2b-Yna"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Meme" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9I-Ry-bFH">
-                                <rect key="frame" x="20" y="94" width="335" height="50"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J9I-Ry-bFH">
+                                <rect key="frame" x="20" y="62" width="627" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Bu9-Rg-HnX"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Me" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="15r-5e-VNL">
-                                <rect key="frame" x="20" y="543" width="335" height="50"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="15r-5e-VNL">
+                                <rect key="frame" x="20" y="263" width="627" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ume-Vc-6sc"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Add-7K-ph9">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="32"/>
                                 <items>
                                     <barButtonItem systemItem="action" id="HzH-VZ-HeO">
                                         <connections>
@@ -95,12 +92,12 @@
                             <constraint firstAttribute="trailing" secondItem="Gjx-PF-SHc" secondAttribute="trailing" symbolic="YES" id="GoL-gd-A8r"/>
                             <constraint firstItem="15r-5e-VNL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Ked-D7-A6i"/>
                             <constraint firstAttribute="trailing" secondItem="Add-7K-ph9" secondAttribute="trailing" symbolic="YES" id="LDv-FJ-uoO"/>
+                            <constraint firstItem="Add-7K-ph9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" symbolic="YES" id="Pi2-r7-bXu"/>
                             <constraint firstItem="Gjx-PF-SHc" firstAttribute="top" secondItem="gHI-Me-tts" secondAttribute="bottom" id="W3R-6K-INE"/>
                             <constraint firstAttribute="trailing" secondItem="15r-5e-VNL" secondAttribute="trailing" constant="20" id="YPQ-wP-030"/>
                             <constraint firstItem="J9I-Ry-bFH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZBg-OO-W1h"/>
                             <constraint firstItem="J9I-Ry-bFH" firstAttribute="top" secondItem="Add-7K-ph9" secondAttribute="bottom" constant="30" id="btu-a0-lX0"/>
                             <constraint firstItem="J9I-Ry-bFH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="fUO-kh-Y9k"/>
-                            <constraint firstItem="Add-7K-ph9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="npz-f4-Xr5"/>
                             <constraint firstItem="Add-7K-ph9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" symbolic="YES" id="nt3-6f-LTZ"/>
                             <constraint firstAttribute="trailing" secondItem="gHI-Me-tts" secondAttribute="trailing" id="pGA-lL-ntS"/>
                             <constraint firstItem="gHI-Me-tts" firstAttribute="top" secondItem="Add-7K-ph9" secondAttribute="bottom" id="unB-4z-Csq"/>
@@ -114,6 +111,8 @@
                         <outlet property="mainImage" destination="gHI-Me-tts" id="t2O-29-LlQ"/>
                         <outlet property="topTextField" destination="J9I-Ry-bFH" id="F0g-3z-kBu"/>
                         <outlet property="topToolbar" destination="Add-7K-ph9" id="XDA-Df-2go"/>
+                        <outletCollection property="bothTextFields" destination="15r-5e-VNL" collectionClass="NSMutableArray" id="SrV-ws-XYG"/>
+                        <outletCollection property="bothToolbars" destination="Add-7K-ph9" collectionClass="NSMutableArray" id="NrD-7T-QFk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

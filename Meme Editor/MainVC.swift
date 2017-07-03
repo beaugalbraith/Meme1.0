@@ -11,6 +11,8 @@ import UIKit
 class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     // TODO: have an undo cancel. When cancel is pressed hold initial values in variables then undo cancel can put the image and text fields back.
     //MARK: Outlets
+    @IBOutlet var bothTextFields: [UITextField]!
+    @IBOutlet var bothToolbars: [UIToolbar]!
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var topToolbar: UIToolbar!
     @IBOutlet weak var bottomToolbar: UIToolbar!
@@ -31,36 +33,39 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
         clearMeme()
     }
+    //MARK: App lifecycle functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.layer.backgroundColor = UIColor.white.cgColor
+        view.layer.backgroundColor = UIColor.darkGray.cgColor
         setupTextFields()
         
-
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
+        topTextField.autocapitalizationType = .allCharacters
+        bottomTextField.autocapitalizationType = .allCharacters
     }
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribeToKeyboardNotifications()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     func setupTextFields() {
+        // NSStrokeWidthAttributeName, a positive value only provides the outline, a zero value provides all fill and no outline, an negative value provides both the outline and fill color
         let textFields = [topTextField, bottomTextField]
-        let memeTextFieldAttributes: [String: Any] = [NSStrokeColorAttributeName: UIColor.black, NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!, NSStrokeWidthAttributeName: 3.0]
-        
+        let memeTextFieldAttributes: [String: Any] = [NSStrokeColorAttributeName: UIColor.black, NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!, NSStrokeWidthAttributeName: -3.0]
         for textField in textFields {
             textField?.delegate = self
             textField?.defaultTextAttributes = memeTextFieldAttributes
             textField?.textAlignment = .center
         }
-        topTextField.placeholder = "top".uppercased()
-        bottomTextField.placeholder = "bottom".uppercased()
+        topTextField.text = "top".uppercased()
+        bottomTextField.text = "bottom".uppercased()
     }
+    
     func pickAnImage() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -77,8 +82,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     }
     func shareMeme() {
         let meme = createMemedImage()
-        let memeText = "My Memed Image"
-        
         let activityController = UIActivityViewController(activityItems: [meme], applicationActivities: nil)
         self.present(activityController, animated: true, completion: nil)
         
@@ -88,9 +91,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         imagePickerController.delegate = self
         imagePickerController.sourceType = .camera
         self.present(imagePickerController, animated: true, completion: nil)
-    }
-    func saveMeme() {
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: (mainImage?.image!)!, memeImage: createMemedImage())
     }
     
     //MARK: Keyboard functions
@@ -102,7 +102,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
             return
         } else {
             view.frame.origin.y = 0 - getKeyboardHeight(notification)
-            
         }
     }
     func keyboardWillHide(_ notification: Notification) {
@@ -111,7 +110,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         } else {
             view.frame.origin.y += getKeyboardHeight(notification)
         }
-            
     }
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
@@ -129,13 +127,18 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        for textField in self.view.subviews where textField is UITextField {
+        for textField in bothTextFields {
             textField.resignFirstResponder()
         }
+        view.endEditing(true)
         return true
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for textField in self.view.subviews where textField is UITextField {
+        for textField in bothTextFields {
             textField.resignFirstResponder()
         }
         view.endEditing(true)
@@ -146,10 +149,15 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         bottomTextField.text = ""
     }
     func hideToolbars() {
+        /* Find out why this doesn't work
+         for toolbar in bothToolbars {
+         toolbar.isHidden = true
+         }
+         */
         for toolbar in self.view.subviews where toolbar is UIToolbar {
             toolbar.isHidden = true
         }
-    }
+     }
     func unHideToolbars() {
         for toolbar in self.view.subviews where toolbar is UIToolbar {
             toolbar.isHidden = false
