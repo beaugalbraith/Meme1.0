@@ -114,6 +114,7 @@
                         <outletCollection property="bothTextFields" destination="15r-5e-VNL" collectionClass="NSMutableArray" id="SrV-ws-XYG"/>
                         <outletCollection property="bothToolbars" destination="Add-7K-ph9" collectionClass="NSMutableArray" id="NrD-7T-QFk"/>
                         <outletCollection property="bothToolbars" destination="Gjx-PF-SHc" collectionClass="NSMutableArray" id="Cq2-dR-V7b"/>
+                        <outletCollection property="bothTextFields" destination="J9I-Ry-bFH" collectionClass="NSMutableArray" id="L71-Xk-BBJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

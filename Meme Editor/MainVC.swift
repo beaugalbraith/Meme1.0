@@ -21,11 +21,10 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     @IBAction func albumPressed(_ sender: UIBarButtonItem) {
-        pickAnImage()
-        
+        presentImagePickerWith(sourceType: .photoLibrary)
     }
     @IBAction func cameraPressed(_ sender: UIBarButtonItem) {
-        takePicture()
+        presentImagePickerWith(sourceType: .camera)
     }
     @IBAction func actionPressed(_ sender: UIBarButtonItem) {
         shareMeme()
@@ -62,21 +61,19 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
             textField?.defaultTextAttributes = memeTextFieldAttributes
             textField?.textAlignment = .center
         }
-        topTextField.text = "top".uppercased()
-        bottomTextField.text = "bottom".uppercased()
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
     }
-    
-    func pickAnImage() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = .photoLibrary
-        self.present(imagePickerController, animated: true, completion: nil)
-        
+    //MARK: ImagePicker functions
+    func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        self.present(imagePicker, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.mainImage.image = image
-            
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -86,13 +83,6 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         self.present(activityController, animated: true, completion: nil)
         
     }
-    func takePicture() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = .camera
-        self.present(imagePickerController, animated: true, completion: nil)
-    }
-    
     //MARK: Keyboard functions
     //NOTE: If top text field is selected we don't want to move the view
     //TODO: check if I need to do something with the first responder before return on the top text field.
