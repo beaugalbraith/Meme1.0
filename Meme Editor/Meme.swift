@@ -6,7 +6,6 @@
 //  Copyright © 2017 gem. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct Meme {
@@ -14,6 +13,5 @@ struct Meme {
     var bottomText: String
     var originalImage: UIImage
     var memeImage: UIImage
-    
 }
 

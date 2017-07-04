@@ -54,7 +54,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         super.didReceiveMemoryWarning()
     }
     func setupTextFields() {
-        // NSStrokeWidthAttributeName, a positive value only provides the outline, a zero value provides all fill and no outline, an negative value provides both the outline and fill color
+        //NOTE: NSStrokeWidthAttributeName, a positive value only provides the outline, a zero value provides all fill and no outline, an negative value provides both the outline and fill color
         let textFields = [topTextField, bottomTextField]
         let memeTextFieldAttributes: [String: Any] = [NSStrokeColorAttributeName: UIColor.black, NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!, NSStrokeWidthAttributeName: -3.0]
         for textField in textFields {
@@ -94,7 +94,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     }
     
     //MARK: Keyboard functions
-    // If top text field is selected we don't want to move the view
+    //NOTE: If top text field is selected we don't want to move the view
     //TODO: check if I need to do something with the first responder before return on the top text field.
     func keyboardWillShow(_ notification: Notification) {
         
@@ -148,28 +148,25 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         topTextField.text = ""
         bottomTextField.text = ""
     }
-    func hideToolbars() {
-        /* Find out why this doesn't work
-         for toolbar in bothToolbars {
-         toolbar.isHidden = true
-         }
-         */
-        for toolbar in self.view.subviews where toolbar is UIToolbar {
-            toolbar.isHidden = true
-        }
-     }
-    func unHideToolbars() {
-        for toolbar in self.view.subviews where toolbar is UIToolbar {
-            toolbar.isHidden = false
+    func configureToolbars(hide: Bool) {
+        if hide {
+            for toolbar in bothToolbars {
+                toolbar.isHidden = true
+            }
+        } else {
+            for toolbar in bothToolbars {
+                toolbar.isHidden = false
+            }
         }
     }
+    
     func createMemedImage() -> UIImage {
-        hideToolbars()
+        configureToolbars(hide: true)
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        unHideToolbars()
+        configureToolbars(hide: false)
         return memedImage
     }
 }
