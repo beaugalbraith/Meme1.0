@@ -40,23 +40,21 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
-        topTextField.autocapitalizationType = .allCharacters
-        bottomTextField.autocapitalizationType = .allCharacters
     }
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         unsubscribeToKeyboardNotifications()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     func setupTextFields() {
         //NOTE: NSStrokeWidthAttributeName, a positive value only provides the outline, a zero value provides all fill and no outline, an negative value provides both the outline and fill color
         let textFields = [topTextField, bottomTextField]
         let memeTextFieldAttributes: [String: Any] = [NSStrokeColorAttributeName: UIColor.black, NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!, NSStrokeWidthAttributeName: -3.0]
         for textField in textFields {
+            textField?.autocapitalizationType = .allCharacters
             textField?.delegate = self
             textField?.defaultTextAttributes = memeTextFieldAttributes
             textField?.textAlignment = .center
@@ -77,12 +75,34 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         }
         self.dismiss(animated: true, completion: nil)
     }
+    //MARK: Meme image functions
     func shareMeme() {
-        let meme = createMemedImage()
-        let activityController = UIActivityViewController(activityItems: [meme], applicationActivities: nil)
+        let memeImage = createMemedImage()
+        let activityController = UIActivityViewController(activityItems: [memeImage], applicationActivities: nil)
+        activityController.completionWithItemsHandler = { [weak self]
+            (activityTypeChosen, completed:Bool, returnedItems:[Any]?, error:Error?) in
+            if completed {
+                self?.saveMeme(memedImage: memeImage)
+                self?.dismiss(animated: true, completion: nil)
+            }
+        }
         self.present(activityController, animated: true, completion: nil)
-        
     }
+    
+    func createMemedImage() -> UIImage {
+        configureToolbars(hide: true)
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        configureToolbars(hide: false)
+        return memedImage
+    }
+    func saveMeme(memedImage: UIImage) {
+        // Not using this now but will in future
+        _ = Meme(topText: topTextField.text ?? "", bottomText: bottomTextField.text ?? "", originalImage: mainImage.image ?? UIImage(), memeImage: memedImage)
+    }
+    
     //MARK: Keyboard functions
     //NOTE: If top text field is selected we don't want to move the view
     //TODO: check if I need to do something with the first responder before return on the top text field.
@@ -98,7 +118,7 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         if topTextField.isFirstResponder {
             return
         } else {
-            view.frame.origin.y += getKeyboardHeight(notification)
+            view.frame.origin.y = 0
         }
     }
     func subscribeToKeyboardNotifications() {
@@ -124,7 +144,9 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -135,28 +157,13 @@ class MainVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     }
     func clearMeme() {
         self.mainImage.image = .none
-        topTextField.text = ""
-        bottomTextField.text = ""
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
     }
     func configureToolbars(hide: Bool) {
-        if hide {
-            for toolbar in bothToolbars {
-                toolbar.isHidden = true
-            }
-        } else {
-            for toolbar in bothToolbars {
-                toolbar.isHidden = false
-            }
+        for toolbar in bothToolbars {
+            toolbar.isHidden = hide
         }
     }
     
-    func createMemedImage() -> UIImage {
-        configureToolbars(hide: true)
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        configureToolbars(hide: false)
-        return memedImage
-    }
 }
